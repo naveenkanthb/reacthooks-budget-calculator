@@ -18,6 +18,7 @@ function App() {
   const [charge,setCharge] = useState('');
   const [amount,setAmount] = useState('');
   const [alert,setAlert] = useState({show:false});
+  const [edit,setEdit] = useState(false);
 
   const handleCharge = e => {
     setCharge(e.target.value);
@@ -34,6 +35,16 @@ function App() {
 
   const clearItems = () => {
     setExpenses([]);
+    handleAlert({type:'danger',text:"all the items are cleared"});
+  }
+  const handleDelete = (id) =>{  
+    setExpenses([...expenses.filter( item => item.id !== id)]);
+    handleAlert({type:'danger',text:"we are deleting the item"});
+  }
+
+  const handleEdit = (id) =>{
+    console.log(id);
+    
   }
 
   const handleSubmit = e => {
@@ -60,9 +71,9 @@ function App() {
       <h1>Budget Calculator</h1>
       <main className="App">
         <ExpenseForm charge={charge} amount={amount} 
-        handleCharge={handleCharge} handleAmount={handleAmount} handleSubmit={handleSubmit}
+        handleCharge={handleCharge} handleAmount={handleAmount} handleSubmit={handleSubmit} edit={edit}
         />
-        <ExpenseList expenses={expenses} clearItems={clearItems}/>
+        <ExpenseList expenses={expenses} clearItems={clearItems} handleDelete={handleDelete} handleEdit={handleEdit} />
       </main>
       <h1>Total Spending : 
         <span className="total">
