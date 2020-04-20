@@ -16,7 +16,7 @@ export const ExpenseForm = ({charge,amount,handleCharge,handleAmount,handleSubmi
                     id="amount" placeholder="100" value={amount} onChange={handleAmount}/>
                 </div>
             </div>
-            <button type="submit" className="btn">{edit?'submit' : 'edit'} <MdSend className="btn-icom" /></button>
+            <button type="submit" className="btn">{edit?'edit' : 'submit'} <MdSend className="btn-icom" /></button>
         </form>
     )
 }
